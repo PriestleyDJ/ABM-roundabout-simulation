@@ -127,7 +127,7 @@ namespace TrafficSimulation
 
                     while (size5 > netherthorpe.Count)
                     {
-                        bolsover.Add(null);
+                        netherthorpe.Add(null);
                     }
 
                     while (size5 < netherthorpe.Count)
