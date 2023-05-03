@@ -264,12 +264,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficSystem: {fileID: 0}
-  waypointThresh: 2
+  waypointThresh: 4
   raycastAnchor: {fileID: 6925157653210594741}
-  raycastLength: 5
-  raySpacing: 4
+  raycastLength: 3
+  raySpacing: 6
   raysNumber: 10
-  emergencyBrakeThresh: 1
+  emergencyBrakeThresh: 0.5
   slowDownThresh: 5
   vehicleStatus: 0
 --- !u!1 &6925157652754103285
