@@ -320,5 +320,13 @@ namespace TrafficSimulation {
             }
             return vehicleSegment;
         }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Out Of Bounds")
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
