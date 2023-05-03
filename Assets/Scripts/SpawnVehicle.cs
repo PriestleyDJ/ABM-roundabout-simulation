@@ -10,13 +10,114 @@ namespace TrafficSimulation
 {
     public class SpawnVehicle : MonoBehaviour
     {
-        List<Waypoint> broadLane = new List<Waypoint>();
-        List<Waypoint> hanover = new List<Waypoint>();
-        List<Waypoint> brookHill = new List<Waypoint>();
-        List<Waypoint> bolsover = new List<Waypoint>();
-        List<Waypoint> netherthorpe = new List<Waypoint>();
+        public GameObject carPrefab;
+        public GameObject cars;
+        public TrafficSystem trafficSystem;
+
+        [Tooltip("Broad lane vehicle seconds per spawn")]
+        [SerializeField] public float broadLaneSPS = 5;
+        [Tooltip("Hanover street vehicle seconds per spawn")]
+        [SerializeField] public float hanoverStreetSPS = 5;
+        [Tooltip("Brook Hill vehicle seconds per spawn")]
+        [SerializeField] public float brookHillSPS = 5;
+        [Tooltip("Bolsover street vehicle seconds per spawn")]
+        [SerializeField] public float bolsoverStreetSPS = 5;
+        [Tooltip("Netherthorpe road vehicle seconds per spawn")]
+        [SerializeField] public float netherthorpeRoadSPS = 5;
+
+        [HideInInspector, SerializeField]  List<Waypoint> broadLane = new List<Waypoint>();
+        [HideInInspector, SerializeField]  List<Waypoint> hanover = new List<Waypoint>();
+        [HideInInspector, SerializeField]  List<Waypoint> brookHill = new List<Waypoint>();
+        [HideInInspector, SerializeField]  List<Waypoint> bolsover = new List<Waypoint>();
+        [HideInInspector, SerializeField]  List<Waypoint> netherthorpe = new List<Waypoint>();
+
+        private float tempBroadLaneSPS;
+        private float tempHanoverStreetSPS;
+        private float tempBrookHillSPS;
+        private float tempBolsoverStreetSPS;
+        private float tempNetherthorpeRoadSPS;
 
         bool showSpawnpoints = false;
+
+        private void Start()
+        {
+            tempBroadLaneSPS = 0;
+            tempHanoverStreetSPS = 0;
+            tempBrookHillSPS = 0;
+            tempBolsoverStreetSPS = 0;
+            tempNetherthorpeRoadSPS = 0;
+
+            GameObject car1 = Instantiate(carPrefab, broadLane[0].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
+            car1.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car2 = Instantiate(carPrefab, broadLane[1].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
+            car2.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car3 = Instantiate(carPrefab, hanover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car3.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car4 = Instantiate(carPrefab, hanover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car4.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car5 = Instantiate(carPrefab, brookHill[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car5.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car6 = Instantiate(carPrefab, brookHill[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car6.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car7 = Instantiate(carPrefab, bolsover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car7.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car8 = Instantiate(carPrefab, bolsover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car8.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car9 = Instantiate(carPrefab, netherthorpe[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car9.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            GameObject car10 = Instantiate(carPrefab, netherthorpe[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+            car10.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+        }
+
+        private void Update()
+        {
+            tempBroadLaneSPS += Time.deltaTime;
+            tempHanoverStreetSPS += Time.deltaTime;
+            tempBrookHillSPS += Time.deltaTime;
+            tempBolsoverStreetSPS += Time.deltaTime;
+            tempNetherthorpeRoadSPS += Time.deltaTime;
+
+            if (tempBroadLaneSPS >= broadLaneSPS)
+            {
+                tempBroadLaneSPS = 0;
+                GameObject car1 = Instantiate(carPrefab, broadLane[0].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
+                car1.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                GameObject car2 = Instantiate(carPrefab, broadLane[1].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
+                car2.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            }
+            if (tempHanoverStreetSPS >= hanoverStreetSPS)
+            {
+                tempHanoverStreetSPS = 0;
+                GameObject car3 = Instantiate(carPrefab, hanover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car3.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                GameObject car4 = Instantiate(carPrefab, hanover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car4.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            }
+            if (tempBrookHillSPS >= brookHillSPS)
+            {
+                tempBrookHillSPS = 0;
+                GameObject car5 = Instantiate(carPrefab, brookHill[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car5.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                GameObject car6 = Instantiate(carPrefab, brookHill[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car6.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            }
+            if (tempBolsoverStreetSPS >= bolsoverStreetSPS)
+            {
+                tempBolsoverStreetSPS = 0;
+                GameObject car7 = Instantiate(carPrefab, bolsover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car7.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                GameObject car8 = Instantiate(carPrefab, bolsover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car8.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            }
+            if (tempNetherthorpeRoadSPS >= netherthorpeRoadSPS)
+            {
+                tempNetherthorpeRoadSPS = 0;
+                GameObject car9 = Instantiate(carPrefab, netherthorpe[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car9.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                GameObject car10 = Instantiate(carPrefab, netherthorpe[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
+                car10.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            }
+        }
 
         #region Editor
 #if UNITY_EDITOR
@@ -26,6 +127,7 @@ namespace TrafficSimulation
         {
             public override void OnInspectorGUI()
             {
+                serializedObject.Update();
                 base.OnInspectorGUI();
 
                 SpawnVehicle spawnVehicle = (SpawnVehicle)target;
@@ -140,7 +242,8 @@ namespace TrafficSimulation
                         netherthorpe[i] = EditorGUILayout.ObjectField("Spawn point " + i, netherthorpe[i], typeof(Waypoint), true) as Waypoint;
                     }
                     EditorGUI.indentLevel--;
-                }                
+                }
+                serializedObject.ApplyModifiedProperties();
             }
         }
 
