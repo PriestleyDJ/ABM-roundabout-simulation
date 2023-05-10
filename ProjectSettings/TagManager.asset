@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Waypoint
-  - AutonomousVehicle
   - Out Of Bounds
+  - vehicleAgent
+  - VehicleAgent
+  - AutonomousVehicle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - AutonomousVehicle
+  - VehicleAgent
   - 
   - 
   - 

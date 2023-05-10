@@ -1,10 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ABMTrafficSimulation {
+namespace ABMTrafficSimulation
+{
     public class Waypoints : MonoBehaviour
     {
+        // might need to get rid of everything i did
+        [HideInInspector]
         public LaneSegmentation lane;
 
         public void Refresh(int _laneID, LaneSegmentation _lane)

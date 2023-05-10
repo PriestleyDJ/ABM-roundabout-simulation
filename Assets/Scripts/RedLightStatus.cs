@@ -1,16 +1,11 @@
-﻿// Traffic Simulation
-// https://github.com/mchrbn/unity-traffic-simulation
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TrafficSimulation;
+using ABMTrafficSimulation;
 
 public class RedLightStatus : MonoBehaviour
-{
-
-    public int lightGroupId;  // Belong to traffic light 1 or 2?
-    public Intersection intersection;
+{    
+    public Junction junction;
     
     Light pointLight;
 
@@ -25,7 +20,7 @@ public class RedLightStatus : MonoBehaviour
     }
 
     void SetTrafficLightColor(){
-        if(lightGroupId == intersection.currentRedLightsGroup)
+        if(junction.redLight)
             pointLight.color = new Color(1, 0, 0);
         else
             pointLight.color = new Color(0, 1, 0);

@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 6925157652514183923}
   m_Layer: 8
   m_Name: Car Coupe
-  m_TagString: AutonomousVehicle
+  m_TagString: VehicleAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,22 +235,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6925157652514183932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5021f9004f348d74abb4f0ae3ed02375, type: 3}
+  m_Script: {fileID: 11500000, guid: d43725fd6f919e741bf96f91fa07d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  downForce: 100
-  maxAngle: 30
-  steeringLerp: 5
-  steeringSpeedMax: 8
-  maxTorque: 100
-  brakeTorque: 100000
-  unitType: 1
-  minSpeed: 1
+  wheelL: {fileID: 0}
+  wheelR: {fileID: 0}
   maxSpeed: 30
-  leftWheelShape: {fileID: 100002, guid: 25a29d2766309ac48a1840f0088d95eb, type: 3}
-  rightWheelShape: {fileID: 100004, guid: 25a29d2766309ac48a1840f0088d95eb, type: 3}
-  animateWheels: 1
-  driveType: 0
+  minSpeed: 1
 --- !u!114 &6925157652514183923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,18 +251,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6925157652514183932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde2d72bdb21e8542bfb0a4516cc158b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4769b9c088f5e6e4cb145eafc43c1d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trafficSystem: {fileID: 0}
-  waypointThresh: 4
-  raycastAnchor: {fileID: 6925157653210594741}
+  trafficNetwork: {fileID: 0}
+  raycastPos: {fileID: 6925157652754103284}
   raycastLength: 3
-  raySpacing: 6
-  raysNumber: 10
-  emergencyBrakeThresh: 0.5
-  slowDownThresh: 5
-  vehicleStatus: 0
+  raycastDistance: 6
+  raycastNumber: 10
+  brakeDistance: 0.5
+  deccelerationDistance: 5
+  vehicleState: 0
 --- !u!1 &6925157652754103285
 GameObject:
   m_ObjectHideFlags: 0

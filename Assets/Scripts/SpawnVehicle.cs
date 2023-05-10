@@ -6,13 +6,13 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace TrafficSimulation
+namespace ABMTrafficSimulation
 {
     public class SpawnVehicle : MonoBehaviour
     {
         public GameObject carPrefab;
         public GameObject cars;
-        public TrafficSystem trafficSystem;
+        public TrafficNetwork trafficNetwork;
 
         [Tooltip("Broad lane vehicle seconds per spawn")]
         [SerializeField] public float broadLaneSPS = 5;
@@ -25,11 +25,11 @@ namespace TrafficSimulation
         [Tooltip("Netherthorpe road vehicle seconds per spawn")]
         [SerializeField] public float netherthorpeRoadSPS = 5;
 
-        [HideInInspector, SerializeField]  List<Waypoint> broadLane = new List<Waypoint>();
-        [HideInInspector, SerializeField]  List<Waypoint> hanover = new List<Waypoint>();
-        [HideInInspector, SerializeField]  List<Waypoint> brookHill = new List<Waypoint>();
-        [HideInInspector, SerializeField]  List<Waypoint> bolsover = new List<Waypoint>();
-        [HideInInspector, SerializeField]  List<Waypoint> netherthorpe = new List<Waypoint>();
+        [HideInInspector, SerializeField]  List<Waypoints> broadLane = new List<Waypoints>();
+        [HideInInspector, SerializeField]  List<Waypoints> hanover = new List<Waypoints>();
+        [HideInInspector, SerializeField]  List<Waypoints> brookHill = new List<Waypoints>();
+        [HideInInspector, SerializeField]  List<Waypoints> bolsover = new List<Waypoints>();
+        [HideInInspector, SerializeField]  List<Waypoints> netherthorpe = new List<Waypoints>();
 
         private float tempBroadLaneSPS;
         private float tempHanoverStreetSPS;
@@ -48,25 +48,25 @@ namespace TrafficSimulation
             tempNetherthorpeRoadSPS = 0;
 
             GameObject car1 = Instantiate(carPrefab, broadLane[0].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
-            car1.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car1.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car2 = Instantiate(carPrefab, broadLane[1].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
-            car2.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car2.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car3 = Instantiate(carPrefab, hanover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car3.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car3.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car4 = Instantiate(carPrefab, hanover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car4.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car4.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car5 = Instantiate(carPrefab, brookHill[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car5.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car5.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car6 = Instantiate(carPrefab, brookHill[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car6.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car6.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car7 = Instantiate(carPrefab, bolsover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car7.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car7.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car8 = Instantiate(carPrefab, bolsover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car8.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car8.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car9 = Instantiate(carPrefab, netherthorpe[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car9.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car9.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             GameObject car10 = Instantiate(carPrefab, netherthorpe[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-            car10.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+            car10.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
         }
 
         private void Update()
@@ -81,41 +81,41 @@ namespace TrafficSimulation
             {
                 tempBroadLaneSPS = 0;
                 GameObject car1 = Instantiate(carPrefab, broadLane[0].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
-                car1.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car1.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
                 GameObject car2 = Instantiate(carPrefab, broadLane[1].transform.parent.gameObject.transform.position, Quaternion.Euler(0, -90, 0), cars.transform);
-                car2.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car2.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             }
             if (tempHanoverStreetSPS >= hanoverStreetSPS)
             {
                 tempHanoverStreetSPS = 0;
                 GameObject car3 = Instantiate(carPrefab, hanover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car3.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car3.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
                 GameObject car4 = Instantiate(carPrefab, hanover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car4.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car4.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             }
             if (tempBrookHillSPS >= brookHillSPS)
             {
                 tempBrookHillSPS = 0;
                 GameObject car5 = Instantiate(carPrefab, brookHill[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car5.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car5.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
                 GameObject car6 = Instantiate(carPrefab, brookHill[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car6.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car6.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             }
             if (tempBolsoverStreetSPS >= bolsoverStreetSPS)
             {
                 tempBolsoverStreetSPS = 0;
                 GameObject car7 = Instantiate(carPrefab, bolsover[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car7.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car7.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
                 GameObject car8 = Instantiate(carPrefab, bolsover[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car8.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car8.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             }
             if (tempNetherthorpeRoadSPS >= netherthorpeRoadSPS)
             {
                 tempNetherthorpeRoadSPS = 0;
                 GameObject car9 = Instantiate(carPrefab, netherthorpe[0].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car9.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car9.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
                 GameObject car10 = Instantiate(carPrefab, netherthorpe[1].transform.parent.gameObject.transform.position, Quaternion.identity, cars.transform);
-                car10.GetComponent<VehicleAI>().trafficSystem = trafficSystem;
+                car10.GetComponent<VehicleAgent>().trafficNetwork = trafficNetwork;
             }
         }
 
@@ -140,7 +140,7 @@ namespace TrafficSimulation
                 {
                     EditorGUILayout.LabelField("Broad Lane");
                     EditorGUI.indentLevel++;
-                    List<Waypoint> broadLane = spawnVehicle.broadLane;
+                    List<Waypoints> broadLane = spawnVehicle.broadLane;
                     int size1 = Mathf.Max(0, EditorGUILayout.IntField("Size", broadLane.Count));
 
                     while (size1 > broadLane.Count)
@@ -155,13 +155,13 @@ namespace TrafficSimulation
 
                     for (int i = 0; i < broadLane.Count; i++)
                     {
-                        broadLane[i] = EditorGUILayout.ObjectField("Spawn point " + i, broadLane[i], typeof(Waypoint), true) as Waypoint;
+                        broadLane[i] = EditorGUILayout.ObjectField("Spawn point " + i, broadLane[i], typeof(Waypoints), true) as Waypoints;
                     }
                     EditorGUI.indentLevel--;
 
                     EditorGUILayout.LabelField("Upper Hanover Street");
                     EditorGUI.indentLevel++;
-                    List<Waypoint> hanover = spawnVehicle.hanover;
+                    List<Waypoints> hanover = spawnVehicle.hanover;
                     int size2 = Mathf.Max(0, EditorGUILayout.IntField("Size", hanover.Count));
 
                     while (size2 > hanover.Count)
@@ -176,13 +176,13 @@ namespace TrafficSimulation
 
                     for (int i = 0; i < hanover.Count; i++)
                     {
-                        hanover[i] = EditorGUILayout.ObjectField("Spawn point " + i, hanover[i], typeof(Waypoint), true) as Waypoint;
+                        hanover[i] = EditorGUILayout.ObjectField("Spawn point " + i, hanover[i], typeof(Waypoints), true) as Waypoints;
                     }
                     EditorGUI.indentLevel--;
 
                     EditorGUILayout.LabelField("Brook Hill");
                     EditorGUI.indentLevel++;
-                    List<Waypoint> brookHill = spawnVehicle.brookHill;
+                    List<Waypoints> brookHill = spawnVehicle.brookHill;
                     int size3 = Mathf.Max(0, EditorGUILayout.IntField("Size", brookHill.Count));
 
                     while (size3 > brookHill.Count)
@@ -197,13 +197,13 @@ namespace TrafficSimulation
 
                     for (int i = 0; i < brookHill.Count; i++)
                     {
-                        brookHill[i] = EditorGUILayout.ObjectField("Spawn point " + i, brookHill[i], typeof(Waypoint), true) as Waypoint;
+                        brookHill[i] = EditorGUILayout.ObjectField("Spawn point " + i, brookHill[i], typeof(Waypoints), true) as Waypoints;
                     }
                     EditorGUI.indentLevel--;
 
                     EditorGUILayout.LabelField("Bolsover Street");
                     EditorGUI.indentLevel++;
-                    List<Waypoint> bolsover = spawnVehicle.bolsover;
+                    List<Waypoints> bolsover = spawnVehicle.bolsover;
                     int size4 = Mathf.Max(0, EditorGUILayout.IntField("Size", bolsover.Count));
 
                     while (size4 > bolsover.Count)
@@ -218,13 +218,13 @@ namespace TrafficSimulation
 
                     for (int i = 0; i < bolsover.Count; i++)
                     {
-                        bolsover[i] = EditorGUILayout.ObjectField("Spawn point " + i, bolsover[i], typeof(Waypoint), true) as Waypoint;
+                        bolsover[i] = EditorGUILayout.ObjectField("Spawn point " + i, bolsover[i], typeof(Waypoints), true) as Waypoints;
                     }
                     EditorGUI.indentLevel--;
 
                     EditorGUILayout.LabelField("Netherthorpe Road");
                     EditorGUI.indentLevel++;
-                    List<Waypoint> netherthorpe = spawnVehicle.netherthorpe;
+                    List<Waypoints> netherthorpe = spawnVehicle.netherthorpe;
                     int size5 = Mathf.Max(0, EditorGUILayout.IntField("Size", netherthorpe.Count));
 
                     while (size5 > netherthorpe.Count)
@@ -239,7 +239,7 @@ namespace TrafficSimulation
 
                     for (int i = 0; i < netherthorpe.Count; i++)
                     {
-                        netherthorpe[i] = EditorGUILayout.ObjectField("Spawn point " + i, netherthorpe[i], typeof(Waypoint), true) as Waypoint;
+                        netherthorpe[i] = EditorGUILayout.ObjectField("Spawn point " + i, netherthorpe[i], typeof(Waypoints), true) as Waypoints;
                     }
                     EditorGUI.indentLevel--;
                 }
