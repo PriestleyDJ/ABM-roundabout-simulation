@@ -22,7 +22,7 @@ namespace TrafficSimulation {
     public enum Status{
         GO,
         STOP,
-        SLOW_DOWN
+        DECCELERATE
     }
 
     public class VehicleAI : MonoBehaviour
@@ -131,7 +131,7 @@ namespace TrafficSimulation {
             else{
                 
                 //Not full acceleration if have to slow down
-                if(vehicleStatus == Status.SLOW_DOWN){
+                if(vehicleStatus == Status.DECCELERATE){
                     acc = .3f;
                     brake = 0f;
                 }

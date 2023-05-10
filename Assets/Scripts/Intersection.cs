@@ -77,11 +77,11 @@ namespace TrafficSimulation{
                 }
                 else{
                     vehiclesInIntersection.Add(_vehicle);
-                    vehicleAI.vehicleStatus = Status.SLOW_DOWN;
+                    vehicleAI.vehicleStatus = Status.DECCELERATE;
                 }
             }
             else{
-                vehicleAI.vehicleStatus = Status.SLOW_DOWN;
+                vehicleAI.vehicleStatus = Status.DECCELERATE;
                 vehiclesInIntersection.Add(_vehicle);
             }
         }
